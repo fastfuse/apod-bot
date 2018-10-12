@@ -1,5 +1,3 @@
-import os
-
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 import apod_bot
@@ -31,8 +29,6 @@ def main():
 
     # Start the Bot
     updater.start_polling()
-
-    # apod_bot.logger.info("Bot started...")
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since

@@ -1,10 +1,9 @@
+import json
 import logging
 
+import redis as r
 import requests
 from telegram import ParseMode
-
-import redis as r
-import json
 
 # Enable logging
 import config
