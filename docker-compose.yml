@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  bot:
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+
+    build:
+     context: .
+     dockerfile: Dockerfile
+
+    depends_on:
+      - redis
+
+
+  redis:
+    image: 'redis:alpine'
