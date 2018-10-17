@@ -12,5 +12,5 @@ APOD_API_URL = f"https://api.nasa.gov/planetary/apod?api_key={APOD_API_KEY}"
 APOD_URL = "https://apod.nasa.gov/apod/"
 REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379')
 
-START_MESSAGE = "HI"
+START_MESSAGE = "Hola!"
 HELP_MESSAGE = "HELP"

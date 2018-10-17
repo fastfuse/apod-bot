@@ -50,29 +50,13 @@ def help_handler(bot, update):
     update.message.reply_text(config.HELP_MESSAGE)
 
 
-def echo_handler(bot, update):
-    """Echo the user message."""
-    chat_id = update.message.chat_id
+def ping_handler(bot, update):
+    """
+    Ping command
+    """
+    logger.info(f"Ping command received. Chat ID: {update.message.chat_id}")
 
-    apod_data = requests.get(config.APOD_API_URL).json()
-    title = apod_data['title']
-
-    logger.info(f"Sending message to chat: {chat_id}")
-
-    if apod_data["media_type"] == "video":
-        bot.send_message(chat_id=chat_id,
-                         text=f'<a href="{config.APOD_URL}">{title}</a>',
-                         parse_mode=ParseMode.HTML)
-
-        # bot.send_video(chat_id=chat_id,
-        #                video=apod_data['url'],
-        #                parse_mode=ParseMode.HTML)
-
-    else:
-        bot.send_photo(chat_id=chat_id,
-                       photo=apod_data['url'],
-                       caption=f'<a href="{config.APOD_URL}">{title}</a>',
-                       parse_mode=ParseMode.HTML)
+    update.message.reply_text("Pong")
 
 
 def send_apod(bot, job):

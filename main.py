@@ -1,3 +1,5 @@
+import datetime
+
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 import apod_bot
@@ -9,10 +11,12 @@ def main():
     Main loop function to start the bot.
     """
     # Create the EventHandler and pass it your bot's token.
+
     updater = Updater(config.TOKEN)
     job_queue = updater.job_queue
 
-    job_queue.run_repeating(apod_bot.send_apod, interval=30)
+    job_queue.run_repeating(apod_bot.send_apod, interval=datetime.timedelta(minutes=3))
+    # job_queue.run_daily(apod_bot.send_apod, time=datetime.time(13, 30))
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
@@ -20,9 +24,10 @@ def main():
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", apod_bot.start_handler))
     dp.add_handler(CommandHandler("help", apod_bot.help_handler))
+    dp.add_handler(CommandHandler("ping", apod_bot.ping_handler))
 
     # on non-command i.e message - echo the message on Telegram
-    dp.add_handler(MessageHandler(Filters.text, apod_bot.echo_handler))
+    # dp.add_handler(MessageHandler(Filters.text, apod_bot.echo_handler))
 
     # log all errors
     dp.add_error_handler(apod_bot.error_cb)
