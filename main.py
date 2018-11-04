@@ -1,6 +1,6 @@
 import datetime
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler
 
 import apod_bot
 import config
@@ -15,8 +15,7 @@ def main():
     updater = Updater(config.TOKEN)
     job_queue = updater.job_queue
 
-    job_queue.run_repeating(apod_bot.send_apod, interval=datetime.timedelta(minutes=3))
-    # job_queue.run_daily(apod_bot.send_apod, time=datetime.time(13, 30))
+    job_queue.run_daily(apod_bot.send_apod, time=datetime.time(12, 00))
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
