@@ -15,7 +15,7 @@ def main():
     updater = Updater(config.TOKEN)
     job_queue = updater.job_queue
 
-    job_queue.run_daily(apod_bot.send_apod, time=datetime.time(12, 00))
+    job_queue.run_daily(apod_bot.send_apod, time=datetime.time(10, 00))
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
