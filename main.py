@@ -1,6 +1,6 @@
 import datetime
 
-from telegram.ext import Updater, CommandHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 import apod_bot
 import config
@@ -15,7 +15,7 @@ def main():
     updater = Updater(config.TOKEN)
     job_queue = updater.job_queue
 
-    job_queue.run_daily(apod_bot.send_apod, time=datetime.time(10, 00))
+    job_queue.run_daily(apod_bot.send_apod, time=datetime.time(12, 00))
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
@@ -26,7 +26,7 @@ def main():
     dp.add_handler(CommandHandler("ping", apod_bot.ping_handler))
 
     # on non-command i.e message - echo the message on Telegram
-    # dp.add_handler(MessageHandler(Filters.text, apod_bot.echo_handler))
+    dp.add_handler(MessageHandler(Filters.text, apod_bot.echo_handler))
 
     # log all errors
     dp.add_error_handler(apod_bot.error_cb)
