@@ -13,3 +13,7 @@ APOD_URL = "https://apod.nasa.gov/apod/"
 
 START_MESSAGE = "Hola!"
 HELP_MESSAGE = "HELP"
+
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+
+DB_PATH = os.path.join(BASEDIR, "subscriptions.sqlite3")

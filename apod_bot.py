@@ -13,7 +13,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
-db = peewee.SqliteDatabase('subscriptions.sqlite3')
+db = peewee.SqliteDatabase(config.DB_PATH)
 
 
 class Subscriber(peewee.Model):
@@ -91,7 +91,7 @@ def send_apod(bot, job):
 
         else:
             bot.send_photo(chat_id=chat_id,
-                           photo=apod_data['hdurl'],
+                           photo=apod_data['url'],
                            caption=f'<a href="{config.APOD_URL}">{title}</a>',
                            parse_mode=ParseMode.HTML)
 
